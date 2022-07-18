@@ -23,6 +23,9 @@ client.on("messageCreate", (message)=>{
         message.delete()
             
     } 
+    if (message.author.id === "579154469724487680" || message.author.id ==="720398088623357973"){
+        message.delete()
+    }
   
 })
 
