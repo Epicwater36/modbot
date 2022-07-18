@@ -24,7 +24,7 @@ client.on("messageCreate", (message)=>{
             
     } 
     const slurs = ["retard","dumb","stupid","spaz","lame","slow","fag","nigg","dumbass","fuck","bitch","shit","fat","gay","trans","homo","groomer","pedo","monkey"]
-    for (i = 0; i <slurs.length(); i++){
+    for (let i = 0; i <slurs.length(); i++){
         if (message.content.includes(slurs[i])){
             message.delete()
             message.channel.send("That was offensive probably")
