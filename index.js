@@ -19,7 +19,7 @@ client.on("ready", () => {
 client.on("messageCreate", (message)=>{
     const senderID = message.author.id
     console.log(senderID)
-    if (message.content.includes("💀") || message.content.includes("☠️") || message.content.includes("🗿")){
+    if (message.content.includes("💀") || message.content.includes("☠️") || message.content.includes("🗿") ||message.content.includes(":ScreenShot20220717at4~1:")){
         message.delete()
             
     } 
