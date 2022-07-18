@@ -18,6 +18,7 @@ client.on("ready", () => {
 //998357286240137216
 client.on("messageCreate", (message)=>{
     const senderID = message.author.id
+    console.log(senderID)
     if (message.content.includes("💀") || message.content.includes("☠️") || message.content.includes("🗿")){
         message.delete()
             
