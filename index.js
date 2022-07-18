@@ -23,6 +23,14 @@ client.on("messageCreate", (message)=>{
         message.delete()
             
     } 
+    const slurs = ["retard","dumb","stupid","spaz","lame","slow","fag","nigg","dumbass","fuck","bitch","shit","fat","gay","trans","homo","groomer","pedo","monkey"]
+    for (i = 0; i <slurs.length(); i++){
+        if (message.content.includes(slurs[i])){
+            message.delete()
+            message.channel.send("That was offensive probably")
+            break
+        }
+    }
     // if (message.author.id === "579154469724487680" || message.author.id ==="720398088623357973"){
     //     message.delete()
     // }
