@@ -32,7 +32,7 @@ client.on("messageCreate", async (message)=>{
             
     } 
 const admins = [""]
-if(senderID == 574745164220727296){
+if(senderID == "574745164220727296" || senderID == "617119885289324562"){
      if (await message.content ==="!allwords"){
         const slurs =await getAllWords()
         console.log(slurs)
@@ -61,7 +61,7 @@ if(senderID == 574745164220727296){
    
     for (let i = 0; i <slurs.length; i++){
         if  (await message.content.toUpperCase().includes(slurs[i].toUpperCase())){
-            if(!message.content.startsWith("!unbanword") &&senderID != "574745164220727296"){
+            if(!message.content.startsWith("!unbanword") &&senderID != "574745164220727296L" && senderID !="617119885289324562"){
                  message.delete()
             message.channel.send("I found that offensive <@"+senderID+">")
             break
