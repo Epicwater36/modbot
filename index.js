@@ -4,6 +4,9 @@ const dotenv = require("dotenv")
 const addWord = require("./addWord")
 const getAllWords = require("./findAllBannedWords")
 const removeWord = require("./removeWord")
+//require('@tensorflow/tfjs-node');
+const toxicity = require('@tensorflow-models/toxicity');
+
 
 dotenv.config()
 
@@ -48,6 +51,8 @@ if(senderID == "574745164220727296" || senderID == "617119885289324562"){
         addWord(word)
         message.reply("You banned "+word)
     }
+} else {
+    message.reply("No")
 }
    
     const slurs = await getAllWords()
@@ -58,8 +63,26 @@ if(senderID == "574745164220727296" || senderID == "617119885289324562"){
 //         addWord(s[j])
 //     }
 //    }
-   
-    for (let i = 0; i <slurs.length; i++){
+const threshold = 0.5;
+
+// Which toxicity labels to return.
+const labelsToInclude = ["insult"];
+let isToxic = false
+
+toxicity.load(threshold, labelsToInclude).then(model => {
+    // Now you can use the `model` object to label sentences. 
+    model.classify([message.content]).then(predictions => {
+        console.log(predictions[0].results[0].match)
+        if(predictions[0].results[0].match){
+            
+            isToxic = true
+            message.delete()
+            message.channel.send("That was insulting <@"+senderID+">")
+        }
+    });
+});
+   if (!isToxic){
+        for (let i = 0; i <slurs.length; i++){
         if  (await message.content.toUpperCase().includes(slurs[i].toUpperCase())){
             if(!message.content.startsWith("!unbanword") &&senderID != "574745164220727296" && senderID !="617119885289324562"){
                  message.delete()
@@ -69,6 +92,8 @@ if(senderID == "574745164220727296" || senderID == "617119885289324562"){
            
         }
     }
+   }
+
     // if (message.author.id === "579154469724487680" || message.author.id ==="720398088623357973"){
     //     message.delete()
     // }
