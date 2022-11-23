@@ -71,7 +71,7 @@ toxicity.load(threshold, labelsToInclude).then(model => {
     // Now you can use the `model` object to label sentences. 
     model.classify([message.content]).then(predictions => {
         console.log(predictions[0].results[0].match)
-        if(predictions[0].results[0].match){
+        if(predictions[0].results[0].match && message.author.id !== "574745164220727296"){
             
             isToxic = true
             message.delete()
